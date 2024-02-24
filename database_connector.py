@@ -1,13 +1,13 @@
 import mysql.connector
-
+print('connecting...')
 cnx = mysql.connector.connect(user ='root' , password = 'ada9zajqwpMYSQL' ,
                              host ='localhost', database = 'learn')
+print('connected :) ')
 cursor = cnx.cursor()
-
-query = "Select* From people"
-cursor.execute(query)
-for(name , age , gender) in cursor:
-    print(f'name is {name} , age is {age} and gender is {gender}')
+values = ("Rachel", 32, "F")
+cursor.execute("INSERT INTO people (name , age , gender) VALUES (%s, %s , %s)", values)
+cnx.commit()
+cursor.close()
 cnx.close()
 
 
